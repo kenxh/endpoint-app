@@ -30,7 +30,7 @@ export const getAllAvatarCharacters = async (setCharacters) => {
  * - I also deleted my custom CSS from the index.css file so feel free to have fun & play around with the look of your app!
  */
 export const getAllBuffySeasons = async (setSeasons) => {
-  const url2 = `http://api.tvmaze.com/shows/427/seasons`;
+  const url2 = `https://api.tvmaze.com/shows/427/seasons`;
   return axios
     .get(url2)
     .then((res) => {
@@ -43,13 +43,33 @@ export const getAllBuffySeasons = async (setSeasons) => {
 };
 
 export const getAllBuffyCast = async (setCast) => {
-  const url3 = `http://api.tvmaze.com/shows/427/cast`;
+  const url3 = `https://api.tvmaze.com/shows/427/cast`;
   return axios
     .get(url3)
     .then((res) => {
       setCast(res.data)
-      // you don't have to return anything! this model would be good if you weren't passing the function as a param
-      // this would return an object saying the axios call was successful! (good for a success popup notification)
+      })
+    .catch((e) =>
+      console.log(e))
+};
+
+export const getAllAngelSeasons = async (setAngelSeasons) => {
+  const url4 = `https://api.tvmaze.com/shows/428/seasons`;
+  return axios
+    .get(url4)
+    .then((res) => {
+      setAngelSeasons(res.data)
+      })
+    .catch((e) =>
+      console.log(e))
+};
+
+export const getAllAngelCast = async (setAngelCast) => {
+  const url5 = `https://api.tvmaze.com/shows/428/cast`;
+  return axios
+    .get(url5)
+    .then((res) => {
+      setAngelCast(res.data)
       })
     .catch((e) =>
       console.log(e))
