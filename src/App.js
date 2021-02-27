@@ -4,10 +4,11 @@ import { app_background } from "./data/markdown";
 
 // import your custom data fetching function
 // TODO: add a data fetching function to the api.js file in the endpoints folder
-import { getAllAvatarCharacters } from "./data/endpoints";
+import { getAllBuffySeasons, getAllBuffyCast } from "./data/endpoints";
 
 const App = () => {
-  const [characters, setCharacters] = useState(null);
+  const [seasons, setSeasons] = useState(null);
+  const [cast, setCast] = useState(null);
 
   /**
    * TODO: modify this useEffect to pass as many params as you want
@@ -15,18 +16,22 @@ const App = () => {
    * - you could also create more state variables to handle multiple params for your endpoint / user input
    */
   useEffect(() => {
-    if (!characters) {
+    if (!seasons) {
       // if our characters is null, fetch some data!
-      getAllAvatarCharacters(setCharacters);
+      getAllBuffySeasons(setSeasons);
     }
     // don't forget to add every state variable you're monitoring to this array!
-  }, [characters]);
+    if (!cast) {
+      getAllBuffyCast(setCast);
+    }
+  }, [seasons, cast]);
 
   return (
     <div className="home">
       <div id="content">
         <ReactMarkdown className="background" source={app_background} />
 
+        <h2><u>Seasons</u></h2>
         <div className="container">
           {/**
            * Code explanation:
@@ -40,29 +45,52 @@ const App = () => {
              * - in this case, if characters is null, it displays "No characters"
              * - otherwise, it maps through characters and renders info for each person!
              */}
-            {characters ? (
-              characters.map((char, idx) => (
-                <div className="col-3 character" key={idx}>
+            {seasons ? (
+              seasons.map((season, idx) => (
+                <div className="seasons-of-tv" key={idx}>
                   {/* Displays name of each character */}
-                  <h2 className="name">{char.name}</h2>
+                  <h2 className="season-number">{"Season " + season.number}</h2>
                   {/* Displays image of each character + adds an additional class (character-img) so I can customize in my CSS file*/}
                   <img
-                    src={char.photoUrl}
+                    src={season.image.original}
                     className="img-fluid character-img"
-                    alt="character icon"
+                    alt="season img"
                   ></img>
-                  <div className="character-description">
+                  <h4 className="episodes">{"Episode Count: " + season.episodeOrder}</h4>
+                  <h4 className="premiere">{"First Episode: " + season.premiereDate}</h4>
+                  <h4 className="end">{"Last Episode: " + season.endDate}</h4>
+                  <div className="season-summary">
                     {/* Displays list of each character's allies (stored in an array within the char object called allies) */}
-                    <h4>Allies</h4>
-                    {char.allies.map(
-                      (a, idx) => a.length > 1 && <li key={idx}>{a}</li>
-                    )}
+                    <h3 className="summary">Season Summary</h3>
+                    <p>{season.summary}</p>
                   </div>
                 </div>
               ))
             ) : (
-              <div>No Characters</div>
+              <div>No Seasons</div>
             )}
+          </div>
+        </div>
+        <h2><u>Cast</u></h2>
+        <div className="container">
+          <div className="row justify-content-md-center">
+            {cast ? (
+                  cast.map((castMember, idx) => (
+                    <div className="cast-members" key={idx}>
+                      <h2 className="person">{castMember.person.name}</h2>
+                      <img
+                        src={castMember.person.image.medium}
+                        className="img-fluid character-img"
+                        alt="cast img"
+                      ></img>
+                      <div className="character-description">
+                        <h4 className="character">{castMember.character.name}</h4>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div>No Cast</div>
+                )}
           </div>
         </div>
       </div>

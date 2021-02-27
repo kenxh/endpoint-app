@@ -1,5 +1,5 @@
 /* feel free to go on google fonts and change this to another font! */
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&display=swap');
 
 /* == HTML == */
 *,
@@ -9,16 +9,17 @@
   box-sizing: border-box;
   --bg-color: rgb(37, 37, 37);
   --text-color: #eee;
-  --title-color: rgb(129, 184, 27);
-  --header-color: rgb(173, 204, 33);
+  --title-color: #8a0303;
+  --header-color: #8a0303;
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: 'Shippori Mincho', serif;
 }
 
 html {
   box-sizing: border-box;
   /* if you change the font, don't forget to change it here too! */
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Shippori Mincho', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.4;
@@ -71,7 +72,7 @@ h1 {
 }
 
 h4 {
-  padding: 20px;
+  padding: 10px;
 }
 
 .background {
@@ -114,5 +115,23 @@ h4 {
   height: 2.5rem;
   margin-top: 2rem;
   padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.seasons-of-tv {
+  border: 10px inset var(--header-color);
+  background-color: rgb(0, 0, 0);
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 5px 3px rgb(0, 0, 0);
+  text-align: center;
+}
+
+.cast-members {
+  border: 10px inset var(--header-color);
+  background-color: rgb(0, 0, 0);
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 5px 3px rgb(0, 0, 0);
   text-align: center;
 }

@@ -6,9 +6,9 @@ export const getAllAvatarCharacters = async (setCharacters) => {
   // here's an example of what adding a variable to a string looks like
   // in this case it's empty, but imagine inserting different types of strings / numbers to grab different types of data
   // check the documentation of your API to see the formating of the endpoint & which vars it can take!
-  const url = `https://last-airbender-api.herokuapp.com/api/v1/characters/${example_var}`;
+  const url1 = `https://last-airbender-api.herokuapp.com/api/v1/characters/${example_var}`;
   return axios
-    .get(url)
+    .get(url1)
     .then((res) => {
       setCharacters(res.data);
       // you don't have to return anything! this model would be good if you weren't passing the function as a param
@@ -29,3 +29,28 @@ export const getAllAvatarCharacters = async (setCharacters) => {
  * - from there, decide what part of res.data to pass to your function parameter (in this case, I passed the entire thing!)
  * - I also deleted my custom CSS from the index.css file so feel free to have fun & play around with the look of your app!
  */
+export const getAllBuffySeasons = async (setSeasons) => {
+  const url2 = `http://api.tvmaze.com/shows/427/seasons`;
+  return axios
+    .get(url2)
+    .then((res) => {
+      setSeasons(res.data)
+      // you don't have to return anything! this model would be good if you weren't passing the function as a param
+      // this would return an object saying the axios call was successful! (good for a success popup notification)
+      })
+    .catch((e) =>
+      console.log(e))
+};
+
+export const getAllBuffyCast = async (setCast) => {
+  const url3 = `http://api.tvmaze.com/shows/427/cast`;
+  return axios
+    .get(url3)
+    .then((res) => {
+      setCast(res.data)
+      // you don't have to return anything! this model would be good if you weren't passing the function as a param
+      // this would return an object saying the axios call was successful! (good for a success popup notification)
+      })
+    .catch((e) =>
+      console.log(e))
+};
